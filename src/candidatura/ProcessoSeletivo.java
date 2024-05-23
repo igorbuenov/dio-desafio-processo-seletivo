@@ -1,5 +1,7 @@
 package candidatura;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ProcessoSeletivo {
@@ -8,9 +10,15 @@ public class ProcessoSeletivo {
         selecaoCandidato();
     }
 
+    public static void imprimirSelecionados(List<String> candidatos) {
+        for (int i = 0; i < candidatos.size(); i++) {
+            System.out.println("Candidato" + (i+1) + ": " + candidatos.get(i));
+        }
+    }
+
     public static void selecaoCandidato() {
         String[] candidatos = {"FELIPE", "MARCIA", "JULIA", "PAULO", "AUGUSTO", "MONICA", "FABRICIO", "MIRELA", "DANIELA", "JORGE"};
-
+        List<String> selecionados = new ArrayList<>();
         int candidatosSelecionados = 0;
         int candidatoAtual = 0;
         double salarioBase = 2000.0;
@@ -21,10 +29,14 @@ public class ProcessoSeletivo {
             System.out.println("O candidato " + candidato + " solicitou este valor de salário " + salarioPretendido);
             if (salarioBase >= salarioPretendido) {
                 System.out.println("O candidato " + candidato + " foi selecionado para a vaga!");
+                selecionados.add(candidato);
                 candidatosSelecionados++;
             }
             candidatoAtual++;
         }
+        System.out.println();
+
+        imprimirSelecionados(selecionados);
     }
 
     public static double valorPretendido() {
